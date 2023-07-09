@@ -30,13 +30,29 @@
         }
         else if (I == 1 || I == 4 || I == 7 || I == 10 || I == 13 || I == 16 || I == 19 || I == 22)
         {
-            if (T[I][J] == 1)
+            if (T[I][J] == 1||T[I][J] == 2)
+            {
+                printf("Pawn ");
+            }
+            else if (T[I][J] == 3||T[I][J] == 4)
+            {
+                printf("King");
+            }
+            else if (T[I][J] == 5||T[I][J] == 6)
+            {
+                printf("Queen");
+            }
+            else if (T[I][J] == 7||T[I][J] == 8)
+            {
+                printf("Knght");
+            }
+            else if (T[I][J] == 9||T[I][J] == 10)
+            {
+                printf("Bshop");
+            }
+            else if (T[I][J] == 11||T[I][J] == 12)
             {
                 printf("Rook ");
-            }
-            else if (T[I][J] == 2)
-            {
-                printf("knight");
             }
         }
     }
