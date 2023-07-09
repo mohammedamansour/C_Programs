@@ -1,8 +1,9 @@
 #include <stdio.h>
+#include <unistd.h>
 
 
     // Restart the board
-    void restart(int T[][50], int I, int J)
+    void restart(int T[][8], int I, int J)
     {
         //Fill up black pieces
         T[1][1]=T[2][1]=   T[1][8]=T[2][8]=2;
@@ -33,7 +34,7 @@
 
 
     //this is the function that determines the color of the piece
-    void color(int T[][50], int I, int J)
+    void color(int T[][8], int I, int J)
     {
 
         if (T[I][J] == 0)
@@ -55,7 +56,7 @@
 
 
     //this is the function that determines the type of the piece
-    void pieces(int T[][50], int I, int J)
+    void pieces(int T[][8], int I, int J)
     {
         if (T[I][J] == 0)
         {
@@ -93,26 +94,48 @@
 
 int main()
 {
-    int i=1, j=1, T[50][50]={0};
-    printf("\n\t\t\t\t\t\t      ");
+    start :
+    int i=1, k=3, j=1, T[24][8]={0};
+    printf("\t\t\t\t\t\t\t");
     printf("CHESS");
     printf("\n\t\t\t\t");
-    printf("+-----+-----+-----+-----+-----+-----+-----+-----+     MADE BY <MOHAMMED AMANSOUR>");
+    printf("  +-----+-----+-----+-----+-----+-----+-----+-----+     MADE BY <MOHAMMED AMANSOUR>");
 
     restart(T, i, j);
-
+    //Draw the table
     for (int i = 1; i <= 23; i++)
     {
         if (i == 3 || i == 6 || i == 9 || i == 12 || i == 15 || i == 18 || i == 21)
         {
             printf("\n\t\t\t\t");
-            printf("|-----|-----|-----|-----|-----|-----|-----|-----|");
+            printf("  |-----|-----|-----|-----|-----|-----|-----|-----|");
         }
         else
         {
             printf("\n\t\t\t\t");
+
             for (int j = 1; j <= 8; j++)
             {
+                if (j == 1)
+                    {
+                        if (i == 1 || i == 4 || i == 7 || i == 10 || i == 13 || i == 16 || i == 19 || i == 22)
+                        {
+                            printf("  ");
+                        }
+                    }
+                if (i == 2 || i == 5 || i == 8 || i == 11 || i == 14 || i == 17 || i == 20 || i == 23)
+                {
+                    if (j==1&&i==2)
+                    {
+                        printf("8 ");
+                    }
+                    if (j==1&&i!=2)
+                    {
+                        printf("%d ", k-i+9);
+                        k=k+2;
+                    }
+                }
+
                 printf("|");
                 if (i == 2 || i == 5 || i == 8 || i == 11 || i == 14 || i == 17 || i == 20 || i == 23)
                 {
@@ -134,6 +157,10 @@ int main()
         }
     }
     printf("\n\t\t\t\t");
-    printf("+-----+-----+-----+-----+-----+-----+-----+-----+");
-    return 0;
+    printf("  +-----+-----+-----+-----+-----+-----+-----+-----+");
+    printf("\n\t\t\t\t");
+    printf("   a(1)  b(2)  c(3)  d(4)  e(5)  f(6)  g(7)  h(8)");
+    sleep(4);
+    system("cls");
+    goto start;
 }
