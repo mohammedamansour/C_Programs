@@ -2,6 +2,49 @@
 #include <unistd.h>
 
 
+    int player(int T[][8], int I, int J, int x1, int y1)
+    {
+        if(x1==0)
+        {
+
+        }
+        printf("Chose the piece to move:(X: %d,Y: %d)", x1, y1); scanf("%d",&x1); scanf("%d",&y1);
+        //clear chosen piece
+        if(x1==8)
+        {
+            x1=1;
+        }
+        else if(x1==7)
+        {
+            x1=4;
+        }
+        else if(x1==6)
+        {
+            x1=7;
+        }
+        else if(x1==5)
+        {
+            x1=10;
+        }
+        else if(x1==4)
+        {
+            x1=13;
+        }
+        else if(x1==3)
+        {
+            x1=16;
+        }
+        else if(x1==2)
+        {
+            x1=19;
+        }
+        else if(x1==1)
+        {
+            x1=22;
+        }
+        T[x1][y1]=T[x1+1][y1]=0;
+    }
+
     // Restart the board
     void restart(int T[][8], int I, int J)
     {
@@ -94,14 +137,14 @@
 
 int main()
 {
+    int i=1, k, X1=0, Y1=0, j=1, T[24][8]={0};
+    restart(T, i, j);
     start :
-    int i=1, k=3, j=1, T[24][8]={0};
+    k=3;
     printf("\t\t\t\t\t\t\t");
     printf("CHESS");
     printf("\n\t\t\t\t");
     printf("  +-----+-----+-----+-----+-----+-----+-----+-----+     MADE BY <MOHAMMED AMANSOUR>");
-
-    restart(T, i, j);
     //Draw the table
     for (int i = 1; i <= 23; i++)
     {
@@ -135,7 +178,6 @@ int main()
                         k=k+2;
                     }
                 }
-
                 printf("|");
                 if (i == 2 || i == 5 || i == 8 || i == 11 || i == 14 || i == 17 || i == 20 || i == 23)
                 {
@@ -159,8 +201,8 @@ int main()
     printf("\n\t\t\t\t");
     printf("  +-----+-----+-----+-----+-----+-----+-----+-----+");
     printf("\n\t\t\t\t");
-    printf("   a(1)  b(2)  c(3)  d(4)  e(5)  f(6)  g(7)  h(8)");
-    sleep(4);
+    printf("    a(1)  b(2)  c(3)  d(4)  e(5)  f(6)  g(7)  h(8)\n");
+    player(T,i,j, X1, Y1);
     system("cls");
     goto start;
 }
