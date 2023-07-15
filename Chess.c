@@ -4,8 +4,6 @@
 
     int player(int T[][8], int I, int J, int x1, int y1)
     {
-
-        printf("Chose the piece to move:(X: %d,Y: %d)", y1, x1); scanf("%d%d",&y1, &x1);
         //clear chosen piece
         if(x1==8)
         {
@@ -134,7 +132,7 @@
 
 int main()
 {
-    int i=1, k, X1=0, Y1=0, j=1, T[24][8]={0};
+    int i=1, k, X1=0, Y1=0, X2=0, Y2=0, j=1, T[24][8]={0};
     restart(T, i, j);
     start :
     k=3;
@@ -148,7 +146,14 @@ int main()
         if (i == 3 || i == 6 || i == 9 || i == 12 || i == 15 || i == 18 || i == 21)
         {
             printf("\n\t\t\t\t");
-            printf("  |-----|-----|-----|-----|-----|-----|-----|-----|");
+            if(i==15)
+                {
+                     printf("  |-----|-----|-----|-----|-----|-----|-----|-----|\t Chosen piece  [X: %d,Y :%d]", Y1, X1);
+                }
+            else
+            {
+                printf("  |-----|-----|-----|-----|-----|-----|-----|-----|");
+            }
         }
         else
         {
@@ -193,12 +198,17 @@ int main()
                     }
                 }
             }
+            if(i==16)
+                {
+                     printf("\t Chosen square [X: %d,Y :%d]", Y2, X2);
+                }
         }
     }
     printf("\n\t\t\t\t");
     printf("  +-----+-----+-----+-----+-----+-----+-----+-----+");
     printf("\n\t\t\t\t");
     printf("    a(1)  b(2)  c(3)  d(4)  e(5)  f(6)  g(7)  h(8)\n");
+    printf("Chose the piece to move:\n  X: ", Y1); scanf("%d",&Y1); printf("  Y: ", X1); scanf("%d",&X1);
     player(T,i,j, X1, Y1);
     system("cls");
     goto start;
