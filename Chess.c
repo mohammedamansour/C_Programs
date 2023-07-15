@@ -2,7 +2,7 @@
 #include <unistd.h>
 
 
-    int player(int T[][8], int I, int J, int x1, int y1, int W)
+    int player(int T[][8], int I, int J, int x1, int y1, int x2, int y2, int W)
     {
         //clear chosen piece
         if(x1==8)
@@ -37,6 +37,40 @@
         {
             x1=22;
         }
+
+        if(x2==8)
+        {
+            x2=1;
+        }
+        else if(x2==7)
+        {
+            x2=4;
+        }
+        else if(x2==6)
+        {
+            x2=7;
+        }
+        else if(x2==5)
+        {
+            x2=10;
+        }
+        else if(x2==4)
+        {
+            x2=13;
+        }
+        else if(x2==3)
+        {
+            x2=16;
+        }
+        else if(x2==2)
+        {
+            x2=19;
+        }
+        else if(x2==1)
+        {
+            x2=22;
+        }
+
         T[x1][y1]=T[x1+1][y1]=0;
     }
 
@@ -203,12 +237,12 @@ int main()
             for (int j = 1; j <= 8; j++)
             {
                 if (j == 1)
+                {
+                    if (i == 1 || i == 4 || i == 7 || i == 10 || i == 13 || i == 16 || i == 19 || i == 22)
                     {
-                        if (i == 1 || i == 4 || i == 7 || i == 10 || i == 13 || i == 16 || i == 19 || i == 22)
-                        {
-                            printf("  ");
-                        }
+                        printf("  ");
                     }
+                }
                 if (i == 2 || i == 5 || i == 8 || i == 11 || i == 14 || i == 17 || i == 20 || i == 23)
                 {
                     if (j==1&&i==2)
@@ -260,8 +294,8 @@ int main()
         else
         {
             w=0;
+            p=2;
         }
-        p=2;
     }
     else if(p==2)
     {
@@ -277,7 +311,7 @@ int main()
             p=1;
         }
     }
-    player(T,i,j, X1, Y1,w);
+    player(T,i,j, X1, Y1, X2, Y2, w);
     ax1=X1;ay1=Y1;
 
     system("cls");
