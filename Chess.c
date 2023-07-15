@@ -132,14 +132,11 @@
 
 int main()
 {
-    int i=1, k, X1=0, Y1=0, X2=0, Y2=0, j=1, T[24][8]={0};
+    int i=1, k, p=1, X1=0, Y1=0, X2=0, Y2=0, j=1, T[24][8]={0};
     restart(T, i, j);
     start :
     k=3;
-    printf("\t\t\t\t\t\t\t");
-    printf("CHESS");
-    printf("\n\t\t\t\t");
-    printf("  +-----+-----+-----+-----+-----+-----+-----+-----+     MADE BY <MOHAMMED AMANSOUR>");
+    printf("\t\t\t\t\t\t\tCHESS\n\t\t\t\t  +-----+-----+-----+-----+-----+-----+-----+-----+     MADE BY <MOHAMMED AMANSOUR>");
     //Draw the table
     for (int i = 1; i <= 23; i++)
     {
@@ -147,9 +144,9 @@ int main()
         {
             printf("\n\t\t\t\t");
             if(i==15)
-                {
-                     printf("  |-----|-----|-----|-----|-----|-----|-----|-----|\t Chosen piece  [X: %d,Y :%d]", Y1, X1);
-                }
+            {
+                 printf("  |-----|-----|-----|-----|-----|-----|-----|-----|\t Chosen piece  [X: %d,Y :%d]", Y1, X1);
+            }
             else
             {
                 printf("  |-----|-----|-----|-----|-----|-----|-----|-----|");
@@ -157,7 +154,26 @@ int main()
         }
         else
         {
-            printf("\n\t\t\t\t");
+            if(i==2)
+            {
+                printf("\n  Instructions:  \t\t");
+            }
+            else if(i==4)
+            {
+                if(p==1)
+                {
+                    printf("\n  Choose a piece to move...\t");
+                }
+                else if(p==2)
+                {
+                    printf("\n  Choose a desired square...\t");
+                }
+
+            }
+            else
+            {
+                printf("\n\t\t\t\t");
+            }
 
             for (int j = 1; j <= 8; j++)
             {
@@ -208,8 +224,16 @@ int main()
     printf("  +-----+-----+-----+-----+-----+-----+-----+-----+");
     printf("\n\t\t\t\t");
     printf("    a(1)  b(2)  c(3)  d(4)  e(5)  f(6)  g(7)  h(8)\n");
-    printf("Chose the piece to move:\n  X: ", Y1); scanf("%d",&Y1); printf("  Y: ", X1); scanf("%d",&X1);
+    printf("\t\t  X: ", Y1); scanf("%d",&Y1); printf("\t\t  Y: ", X1); scanf("%d",&X1);
     player(T,i,j, X1, Y1);
     system("cls");
+    if(p==1)
+    {
+        p=2;
+    }
+    else if(p==2)
+    {
+        p=1;
+    }
     goto start;
 }
