@@ -4,11 +4,8 @@
 
     int player(int T[][8], int I, int J, int x1, int y1)
     {
-        if(x1==0)
-        {
 
-        }
-        printf("Chose the piece to move:(X: %d,Y: %d)", x1, y1); scanf("%d",&x1); scanf("%d",&y1);
+        printf("Chose the piece to move:(X: %d,Y: %d)", y1, x1); scanf("%d%d",&y1, &x1);
         //clear chosen piece
         if(x1==8)
         {
