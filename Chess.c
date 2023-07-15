@@ -2,7 +2,7 @@
 #include <unistd.h>
 
 
-    int player(int T[][8], int I, int J, int x1, int y1)
+    int player(int T[][8], int I, int J, int x1, int y1, int W)
     {
         //clear chosen piece
         if(x1==8)
@@ -72,7 +72,7 @@
 
 
     //this is the function that determines the color of the piece
-    void color(int T[][8], int I, int J)
+    void color(int T[][8], int I, int J, int W)
     {
 
         if (T[I][J] == 0)
@@ -132,7 +132,7 @@
 
 int main()
 {
-    int i=1, k, p=1, X1=0, Y1=0, X2=0, Y2=0, j=1, T[24][8]={0};
+    int i=1, k, ax1, ay1, w=0, p=1, X1=0, Y1=0, X2=0, Y2=0, j=1, T[24][8]={0};
     restart(T, i, j);
     start :
     k=3;
@@ -142,7 +142,21 @@ int main()
     {
         if (i == 3 || i == 6 || i == 9 || i == 12 || i == 15 || i == 18 || i == 21)
         {
-            printf("\n\t\t\t\t");
+            if(i==15)
+            {
+                if(w!=0)
+                {
+                    printf("\n  Warnings:  \t\t\t");
+                }
+                else
+                {
+                    printf("\n\t\t\t\t");
+                }
+            }
+            else
+            {
+                printf("\n\t\t\t\t");
+            }
             if(i==15)
             {
                  printf("  |-----|-----|-----|-----|-----|-----|-----|-----|\t Chosen piece  [X: %d,Y :%d]", Y1, X1);
@@ -170,6 +184,17 @@ int main()
                 }
 
             }
+            else if(i==16)
+                {
+                    if(w==1)
+                    {
+                        printf("\n  Choose A Valid Value! \t");
+                    }
+                    else
+                    {
+                        printf("\n\t\t\t\t");
+                    }
+                }
             else
             {
                 printf("\n\t\t\t\t");
@@ -199,7 +224,7 @@ int main()
                 printf("|");
                 if (i == 2 || i == 5 || i == 8 || i == 11 || i == 14 || i == 17 || i == 20 || i == 23)
                 {
-                    color(T, i, j);
+                    color(T, i, j, w);
                     if (j == 8)
                     {
                     printf("|");
@@ -215,9 +240,9 @@ int main()
                 }
             }
             if(i==16)
-                {
-                     printf("\t Chosen square [X: %d,Y :%d]", Y2, X2);
-                }
+            {
+                 printf("\t Chosen square [X: %d,Y :%d]", Y2, X2);
+            }
         }
     }
     printf("\n\t\t\t\t");
@@ -225,7 +250,17 @@ int main()
     printf("\n\t\t\t\t");
     printf("    a(1)  b(2)  c(3)  d(4)  e(5)  f(6)  g(7)  h(8)\n");
     printf("\t\t  X: ", Y1); scanf("%d",&Y1); printf("\t\t  Y: ", X1); scanf("%d",&X1);
-    player(T,i,j, X1, Y1);
+    if (X1>8 || X1<0 || Y1>8 || Y1<0)
+    {
+        w=1;
+        X1=ax1;Y1=ay1;
+    }
+    else
+    {
+        w=0;
+    }
+    player(T,i,j, X1, Y1,w);
+    ax1=X1;ay1=Y1;
     system("cls");
     if(p==1)
     {
