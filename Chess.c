@@ -132,7 +132,7 @@
 
 int main()
 {
-    int i=1, k, ax1, ay1, w=0, p=1, X1=0, Y1=0, X2=0, Y2=0, j=1, T[24][8]={0};
+    int i=1, k, ax1, ax2, ay1, ay2, w=0, p=1, X1=0, Y1=0, X2=0, Y2=0, j=1, T[24][8]={0};
     restart(T, i, j);
     start :
     k=3;
@@ -146,7 +146,7 @@ int main()
             {
                 if(w!=0)
                 {
-                    printf("\n  Warnings:  \t\t\t");
+                    printf("\n  Warning:  \t\t\t");
                 }
                 else
                 {
@@ -249,26 +249,37 @@ int main()
     printf("  +-----+-----+-----+-----+-----+-----+-----+-----+");
     printf("\n\t\t\t\t");
     printf("    a(1)  b(2)  c(3)  d(4)  e(5)  f(6)  g(7)  h(8)\n");
-    printf("\t\t  X: ", Y1); scanf("%d",&Y1); printf("\t\t  Y: ", X1); scanf("%d",&X1);
-    if (X1>8 || X1<0 || Y1>8 || Y1<0)
-    {
-        w=1;
-        X1=ax1;Y1=ay1;
-    }
-    else
-    {
-        w=0;
-    }
-    player(T,i,j, X1, Y1,w);
-    ax1=X1;ay1=Y1;
-    system("cls");
     if(p==1)
     {
+        printf("\t\t  X: ", Y1); scanf("%d",&Y1); printf("\t\t  Y: ", X1); scanf("%d",&X1);
+        if (X1>8 || X1<0 || Y1>8 || Y1<0)
+        {
+            w=1;
+            X1=ax1;Y1=ay1;
+        }
+        else
+        {
+            w=0;
+        }
         p=2;
     }
     else if(p==2)
     {
-        p=1;
+        printf("\t\t  X: ", Y2); scanf("%d",&Y2); printf("\t\t  Y: ", X2); scanf("%d",&X2);
+        if (X2>8 || X2<0 || Y2>8 || Y2<0)
+        {
+            w=1;
+            X2=ax2;Y2=ay2;
+        }
+        else
+        {
+            w=0;
+            p=1;
+        }
     }
+    player(T,i,j, X1, Y1,w);
+    ax1=X1;ay1=Y1;
+
+    system("cls");
     goto start;
 }
