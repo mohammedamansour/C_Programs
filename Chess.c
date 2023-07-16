@@ -4,7 +4,7 @@
 
     int player(int T[][8], int I, int J, int x1, int y1, int x2, int y2, int W)
     {
-        //clear chosen piece
+        int x, y;
         if(x1==8)
         {
             x1=1;
@@ -70,13 +70,25 @@
         {
             x2=22;
         }
-
+        //put the value of the chosen piece in the desired square
+        x=T[x1][y1];
+        y=T[x1+1][y1];
+        T[x2][y2]=x;
+        T[x2+1][y2]=y;
+        //clear chosen piece
         T[x1][y1]=T[x1+1][y1]=0;
     }
 
     // Restart the board
     void restart(int T[][8], int I, int J)
     {
+        for(I=1;I<=23;I++)
+        {
+            for(J=1;J<=8;J++)
+            {
+                T[I][J]=0;
+            }
+        }
         //Fill up black pieces
         T[1][1]=T[2][1]=   T[1][8]=T[2][8]=2;
         T[1][2]=T[2][2]=   T[1][7]=T[2][7]=4;
@@ -101,14 +113,12 @@
                 T[I][J]=11;
             }
         }
-
     }
 
 
     //this is the function that determines the color of the piece
     void color(int T[][8], int I, int J, int W)
     {
-
         if (T[I][J] == 0)
         {
             printf("     ");
@@ -166,7 +176,8 @@
 
 int main()
 {
-    int i=1, k, ax1, ax2, ay1, ay2, w=0, p=1, X1=0, Y1=0, X2=0, Y2=0, j=1, T[24][8]={0};
+    reset:
+    int i=1, k, ax1, ax2, ay1, ay2, w=0, p=1, X1=0, Y1=0, X2=0, Y2=0, j=1, T[24][8]={0}, instruct=0;
     restart(T, i, j);
     start :
     k=3;
@@ -215,6 +226,32 @@ int main()
                 else if(p==2)
                 {
                     printf("\n  Choose a desired square...\t");
+                }
+
+            }
+            else if(i==4)
+            {
+                if(p==1)
+                {
+                    printf("\n **Choose a piece to move...\t");
+                }
+                else if(p==2)
+                {
+                    printf("\n **Choose a desired square...\t");
+                }
+
+            }
+            else if(i==7)
+            {
+                if(instruct==0||instruct==1)
+                {
+                    printf("\n  *White to move...\t\t");
+                    instruct=instruct+1;
+                }
+                else if(instruct==2||instruct==3)
+                {
+                    printf("\n  *Black to move...\t\t");
+                    instruct=0;
                 }
 
             }
@@ -291,6 +328,11 @@ int main()
             w=1;
             X1=ax1;Y1=ay1;
         }
+        else if(X1==0&&Y1==0)
+        {
+            system("cls");
+            goto reset;
+        }
         else
         {
             w=0;
@@ -305,14 +347,25 @@ int main()
             w=1;
             X2=ax2;Y2=ay2;
         }
+        else if(X2==0&&Y2==0)
+        {
+            system("cls");
+            goto reset;
+        }
         else
         {
             w=0;
             p=1;
         }
     }
+    if(instruct==0||instruct==2)
+    {
     player(T,i,j, X1, Y1, X2, Y2, w);
     ax1=X1;ay1=Y1;
+    instruct=0;
+    }
+
+
 
     system("cls");
     goto start;
