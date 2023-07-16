@@ -177,10 +177,11 @@
 int main()
 {
     reset:
-    int i=1, k, ax1, ax2, ay1, ay2, w=0, p=1, X1=0, Y1=0, X2=0, Y2=0, j=1, T[24][8]={0}, instruct=0;
+    int i=1, k, ax1, ax2, ay1, ay2, w=0, p=1, X1=0, Y1=0, X2=0, Y2=0, j=1, T[24][8]={0}, instruct=-1;
     restart(T, i, j);
     start :
     k=3;
+    instruct+=1;
     printf("\t\t\t\t\t\t\tCHESS\n\t\t\t\t  +-----+-----+-----+-----+-----+-----+-----+-----+     MADE BY <MOHAMMED AMANSOUR>");
     //Draw the table
     for (int i = 1; i <= 23; i++)
@@ -227,7 +228,10 @@ int main()
                 {
                     printf("\n  Choose a desired square...\t");
                 }
-
+                else
+                {
+                    printf("\n\t\t\t\t");
+                }
             }
             else if(i==4)
             {
@@ -239,21 +243,25 @@ int main()
                 {
                     printf("\n **Choose a desired square...\t");
                 }
-
+                else
+                {
+                    printf("\n\t\t\t\t");
+                }
             }
             else if(i==7)
             {
                 if(instruct==0||instruct==1)
                 {
                     printf("\n  *White to move...\t\t");
-                    instruct=instruct+1;
                 }
                 else if(instruct==2||instruct==3)
                 {
                     printf("\n  *Black to move...\t\t");
-                    instruct=0;
                 }
-
+                else
+                {
+                    printf("\n\t\t\t\t");
+                }
             }
             else if(i==16)
                 {
@@ -298,7 +306,7 @@ int main()
                     color(T, i, j, w);
                     if (j == 8)
                     {
-                    printf("|");
+                        printf("|");
                     }
                 }
                 else if (i == 1 || i == 4 || i == 7 || i == 10 || i == 13 || i == 16 || i == 19 || i == 22)
@@ -306,7 +314,7 @@ int main()
                     pieces(T, i, j);
                     if (j == 8)
                     {
-                    printf("|");
+                        printf("|");
                     }
                 }
             }
@@ -316,6 +324,7 @@ int main()
             }
         }
     }
+
     printf("\n\t\t\t\t");
     printf("  +-----+-----+-----+-----+-----+-----+-----+-----+");
     printf("\n\t\t\t\t");
@@ -358,13 +367,15 @@ int main()
             p=1;
         }
     }
-    if(instruct==0||instruct==2)
+    if(instruct==1||instruct==3)
     {
     player(T,i,j, X1, Y1, X2, Y2, w);
     ax1=X1;ay1=Y1;
-    instruct=0;
+    if(instruct==3)
+        {
+            instruct=-1;
+        }
     }
-
 
 
     system("cls");
